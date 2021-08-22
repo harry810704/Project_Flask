@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for message in get_flashed_messages() %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+{% endfor %}
+
+{% if title %}
+<h1>Posted!!</h1>
+<br/><br/>
+
+{% else %}
+
+<h1>Add Post...</h1>
+<br/>
+<div class="shadow p-3 mb-5 bg-light rounded">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+
+        {{ form.title.label(class="form-label") }}
+        {{ form.title(class="form-control") }}
+        <br />
+
+        {{ form.author.label(class="form-label") }}
+        {{ form.author(class="form-control") }}
+        <br />
+
+        {{ form.slug.label(class="form-label") }}
+        {{ form.slug(class="form-control") }}
+        <br />
+
+        {{ form.content.label(class="form-label") }}
+        {{ form.content(class="form-control", rows="5") }}
+        <br />
+        
+        {{ form.submit(class="btn btn-secondary") }}
+    </form>
+</div>
+
+
+<table class="table table-bordered shadow p-3 mb-5 bg-light rounded">
+    <tr>
+        <td width="150px">Title</td><td width="100px">Author</td><td width="50px">Slug</td><td width="50px">Posted Date</td>
+    </tr>
+    {% for our_post in our_posts %}
+    <tr>
+        <td>
+            <a href="{{ url_for('posts') }}">{{ our_post.title }}</a> 
+        </td>
+        <td>
+            {{ our_post.author }}
+        </td>
+        <td>
+            {{ our_post.slug}}
+        </td>
+        <td>
+            {{ our_post.date_posted}}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<br/>
+
+{% endif %}
+
+{% endblock %}

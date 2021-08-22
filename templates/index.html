@@ -1,21 +1,27 @@
-<h1>Welcome!!</h1>
+{% extends 'base.html' %}
 
-<p>This is my flask project</p>
+{% block content %}
 
-<p>My name is {{ first_name }}</p>
+    <h1>Welcome!!</h1>
 
-<p>{{ stuff|safe }}</p>
+    <p>This is my flask project</p>
 
-<p>{{ stuff|striptags }}</p>
+    <p>My name is {{ first_name }}</p>
 
-<p>{{ stuff_title|title }}</p>
+    <p>{{ stuff|safe }}</p>
 
-<p>Menu drinks</p>
+    <p>{{ stuff|striptags }}</p>
 
-{% for drink in drinks %}
-    {{ drink }}<br/>
-{% endfor %}
+    <p>{{ stuff_title|title }}</p>
 
-<br/><br/>
-{{ drinks.1 }}
-{{ drinks.4 + 10}}
+    <p>Menu drinks</p>
+
+    {% for drink in drinks %}
+        {{ drink }}<br/>
+    {% endfor %}
+
+    <br/><br/>
+    {{ drinks.1 }}
+    {{ drinks.4 + 10}}
+
+{% endblock %}
